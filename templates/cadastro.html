@@ -2,6 +2,17 @@
     <head>
     </head>
     <body>
-       cadastro
+    <h1>
+    FORMULARIO
+    </h1>
+       <form method="POST" action="{{ url_for('form') }}">
+       {{ form.csrf_token }}
+       {{ form.username.label }}
+       {{ form.username }}
+       {{ form.password.label }}
+       {{ form.password }}
+       <input type="submit" value="Enviar">
+       
+       </form>
     </body>
-</html>
+</html>S
