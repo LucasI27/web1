@@ -12,7 +12,14 @@ db = SQLAlchemy(app)
 class cadastro(FlaskForm):
     username = StringField('usuario')
     password = PasswordField('senha')
+    email = StringField('email')
 
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(60), nullable=False)
+    email = db.Column(db.String(60), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
 
 @app.route('/')
 def index():
@@ -22,7 +29,10 @@ def index():
 def form():
     form = cadastro()
     if form.validate_on_submit():
-    	return '<h1>a senha é {}. e o usuario é {}.'.format(form.password.data, form.username.data)
+        novo_user = User(username=form.username.data, password=form.password.data, email=form.email.data)
+        db.session.add(novo_user)
+        db.session.commit()
+
     return render_template('cadastro.html', form=form)
 
 if __name__ == "__main__":
