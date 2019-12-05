@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisisasecret!'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///usuario.db'
